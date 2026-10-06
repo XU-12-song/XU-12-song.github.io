@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b1224" />
+  <title>地铁跑酷 · Subway Runner</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div id="game-container"></div>
+
+  <!-- 画面暗角 -->
+  <div id="vignette"></div>
+  <!-- 撞击闪白 -->
+  <div id="flash"></div>
+
+  <!-- ===== 顶部 HUD ===== -->
+  <div id="hud" class="hidden">
+    <div class="hud-pill hud-score">
+      <span class="hud-icon">🏃</span>
+      <div class="hud-text">
+        <span class="hud-label">得分</span>
+        <span id="score-value" class="hud-value">0</span>
+      </div>
+    </div>
+
+    <div class="hud-best">最高分 <b id="hud-highscore">0</b></div>
+
+    <div class="hud-pill hud-coin">
+      <span class="coin-dot"></span>
+      <div class="hud-text">
+        <span class="hud-label">金币</span>
+        <span id="coin-value" class="hud-value">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 开始界面 ===== -->
+  <div id="start-screen" class="overlay">
+    <div class="panel">
+      <div class="logo">
+        <div class="logo-zh">地铁跑酷</div>
+        <div class="logo-en">SUBWAY RUNNER</div>
+      </div>
+
+      <div class="best-badge">🏆 历史最高分 <b id="start-highscore">0</b></div>
+
+      <div class="section-label">选择角色</div>
+      <div id="character-select" class="character-select">
+        <button class="char-btn selected" data-character="xiongda">
+          <span class="char-face face-xiongda">
+            <i class="ear el"></i><i class="ear er"></i>
+            <i class="eye el2"></i><i class="eye er2"></i>
+            <i class="muzzle"></i>
+          </span>
+          <span class="char-name">熊大</span>
+        </button>
+        <button class="char-btn" data-character="nailong">
+          <span class="char-face face-nailong">
+            <i class="horn hl"></i><i class="horn hr"></i>
+            <i class="eye el2"></i><i class="eye er2"></i>
+            <i class="mouth"></i>
+          </span>
+          <span class="char-name">奶龙</span>
+        </button>
+      </div>
+
+      <button id="start-btn" class="primary-btn">
+        <span>开始游戏</span>
+        <i class="btn-shine"></i>
+      </button>
+
+      <div class="controls-card">
+        <div class="ctrl-row">
+          <span class="keys"><kbd>←</kbd><kbd>→</kbd></span>
+          <span class="ctrl-desc">切换车道</span>
+        </div>
+        <div class="ctrl-row">
+          <span class="keys"><kbd>↑</kbd></span>
+          <span class="ctrl-desc">跳跃越障</span>
+        </div>
+        <div class="ctrl-row">
+          <span class="keys"><kbd>↓</kbd></span>
+          <span class="ctrl-desc">下滚穿过</span>
+        </div>
+        <div class="ctrl-row touch">
+          <span class="keys">👆</span>
+          <span class="ctrl-desc">手机滑动操作</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 结算界面 ===== -->
+  <div id="gameover-screen" class="overlay hidden">
+    <div class="panel">
+      <div class="go-title">游戏结束</div>
+      <div id="new-record" class="new-record hidden">🎉 打破纪录！</div>
+
+      <div class="score-card">
+        <div class="score-card-label">本次得分</div>
+        <div id="final-score" class="score-card-value">0</div>
+      </div>
+
+      <div class="result-rows">
+        <div class="result-row">
+          <span class="rr-label"><i class="coin-dot small"></i> 收集金币</span>
+          <span id="final-coins" class="rr-value">0</span>
+        </div>
+        <div class="result-row">
+          <span class="rr-label">🏆 历史最高分</span>
+          <span id="final-highscore" class="rr-value">0</span>
+        </div>
+      </div>
+
+      <button id="restart-btn" class="primary-btn">
+        <span>重新开始</span>
+        <i class="btn-shine"></i>
+      </button>
+      <button id="home-btn" class="secondary-btn">返回首页</button>
+    </div>
+  </div>
+
+  <!-- 拾取提示 -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Three.js（CDN，全局 THREE，无需构建工具） -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- 游戏模块（按依赖顺序加载） -->
+  <script src="js/config.js"></script>
+  <script src="js/textures.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/track.js"></script>
+  <script src="js/decor.js"></script>
+  <script src="js/obstacles.js"></script>
+  <script src="js/collision.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+
+</html>
